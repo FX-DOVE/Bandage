@@ -89,8 +89,21 @@ function Navbar() {
           </ul>
         </ul>
        
-
-
+        <div className={styles.btn}>
+              <FaRegUser className={styles.icon} />
+              Login / Register
+            </div>
+            <div className={styles.icons}>
+              <FaSearch className={styles.icon} />
+              <Link to="/cart" style={{ color: "#23A6F0" }}>
+                <br />
+                <BsCart className={styles.icon} />
+              </Link>
+              {cartTotalQuantity > 0 && (
+                <span className={styles.cartCount}>{cartTotalQuantity}</span>
+                )}
+                </div>
+        
 
 
       </div>
