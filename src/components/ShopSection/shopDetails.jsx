@@ -5,6 +5,7 @@ import { BsCart } from "react-icons/bs";
 import { fetchProducts } from "../../features/productsSlice";
 import star from "../../assets/stars.svg";
 import styles from "../../styles/carddisplay.module.css";
+import LoadMoreButton from "../ui/button";
 
 const BATCH_SIZE = 1; 
 
@@ -21,10 +22,6 @@ function Carddisplay() {
       dispatch(fetchProducts());
     }
   }, [status, dispatch]);
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
 
   if (status === "failed") {
     return <div>Error: {error}</div>;
@@ -123,7 +120,7 @@ function Carddisplay() {
                   ))}
                 </div>
                 <div className={styles["button-options"]}>
-                  <button
+                  <LoadMoreButton
                     style={{
                       backgroundColor: selectedColor
                         ? selectedColor
@@ -132,7 +129,7 @@ function Carddisplay() {
                     onClick={applyThemeColor}
                   >
                     Select Options
-                  </button>
+                  </LoadMoreButton>
                   <div className={styles["select-icons"]}>
                     <FaRegHeart />
                     <BsCart />

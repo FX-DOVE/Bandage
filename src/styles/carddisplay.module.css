@@ -54,17 +54,14 @@
   display: flex;
   gap: 7rem;
   position: relative;
-
 }
 .hero-content {
   display: flex;
   width: 100%;
-  
 }
 
 .image-content {
   position: relative;
-  
 }
 
 .image-content .left-icon {
@@ -74,7 +71,6 @@
   font-size: 50px;
   color: #cdc8c8;
   cursor: pointer;
-
 }
 
 
@@ -91,14 +87,12 @@
   width: 506px;
   height: 450px;
   object-fit: contain;
-  
 }
 
 .image-contents .image-1 {
   margin-top: 20px;
   display: flex;
   gap: 15px;
-
 }
 
 .image-1 img {
@@ -109,7 +103,6 @@
 .hero-container .hero-content-2 {
   padding: 0 20px;
   width: 50%;
-line-height: 2em;
 }
 
 .hero-content-2 h4 {
@@ -203,20 +196,26 @@ line-height: 2em;
   gap: 20px;
 }
 
-
-@media screen and (max-width:800px) {
-  .hero-content {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+@media(max-width: 750px){
+  .hero-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
-  .image-contents .image-1{
-    display: none;
+  .image-contents{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-container .hero-content-2 {
-  
-  line-height: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-content-2 .line{
+    margin-top: 55%;
   }
 }

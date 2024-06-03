@@ -6,9 +6,8 @@ function Footer() {
     <div className={styles.footer}>
       <div className={styles["footer-container"]}>
         <div className={styles["footer-content-1"]}>
-          <h3>Bandage</h3> 
+          <h3>Bandage</h3>
           <div className={styles.icons}>
-          
             <FaFacebook />
             <FaInstagram />
             <FaTwitter />

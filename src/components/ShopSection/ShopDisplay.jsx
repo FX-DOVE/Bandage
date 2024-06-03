@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../features/productsSlice";
-import styles from "../../styles/productdisplay.module.css";
+import styles from "../../styles/shopdisplay.module.css";
+
 const ArticleSection = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -14,12 +15,8 @@ const ArticleSection = () => {
     }
   }, [status, dispatch]);
 
-  if (status === "loading") {
-    return <div>we are coming up</div>;
-  }
-
   if (status === "failed") {
-    return <div>check your internet connection </div>;
+    return <div>Error: {error}</div>;
   }
 
   const product = products[0];
