@@ -6,6 +6,7 @@ import background from '../../assets/background.jpeg';
 import SuccessSection from '../ui/productToast';
 import Button from '../ui/button';
 
+
 function CartBackground() {
   const dispatch = useDispatch();
   const [product, setProduct] = useState(null);

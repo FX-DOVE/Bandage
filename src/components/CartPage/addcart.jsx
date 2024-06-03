@@ -45,87 +45,136 @@ const CartSection = () => {
   };
 
   return (
-    <div className={styles.cartMainContainer}>
-    <div className={styles.shopLinks}>
-      <nav>
-        <a href="#" className={styles.home}>Home</a>
-        <FaAngleRight />
-        <a href="#" className={styles.home}>Shop</a>
-        <FaAngleRight className={styles.disabledLink} />
-        <a href="#" className={styles.shop}>Shopping Cart</a>
-      </nav>
-    </div>
-    <div className={styles.cartContainer}>
-      <div className={styles.cartContent}>
-        <h3>Shopping Cart</h3>
-        <div className={styles.itemHeader}>
-          <p>Item Details</p>
-          <div className={styles.quantityPrice}>
-            <p>Quantity</p>
-            <p>Price</p>
+    <div className={styles["cart-mainContainer"]}>
+      <div className={styles["shop-links"]}>
+        <nav>
+          <a href="#" className={styles["home"]}>
+            Home
+          </a>
+          <FaAngleRight />
+          <a href="#" className={styles["home"]}>
+            Shop
+          </a>
+          <FaAngleRight
+            style={{
+              color: "#BDBDBD",
+            }}
+          />
+          <a href="#" className={styles["shop"]}>
+            Shopping Cart
+          </a>
+        </nav>
+      </div>
+      <div className={styles["cart-container"]}>
+        <div className={styles["cart-content-1"]}>
+          <h3>Shopping Cart</h3>
+          <div className={styles["item-container-1"]}>
+            <div className={styles["item-header"]}>
+              <p>Item Details</p>
+              <div className={styles["quantity-price"]}>
+                <p>Quantity</p>
+                <p>Price</p>
+              </div>
+            </div>
           </div>
-        </div>
-        {cartItems.map((item) => (
-          <div key={item.id} className={styles.itemContainer}>
-            <div className={styles.heroCartSection}>
-              <div className={styles.heroItem}>
-                <img src={item.thumbnail} alt={item.title} />
-                <div className={styles.cartText}>
-                  <h4>{item.title}</h4>
-                  <p>{item.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
-                  <div className={styles.iconText}>
-                    <img src={starIcon} alt="Star" />
-                    <span>{item.reviews?.rating || 0} Reviews</span>
+          {cartItems.map((item) => (
+            <div key={item.id} className={styles["item-container-2"]}>
+              <div className={styles["heroCart-Section"]}>
+                <div className={styles["hero-item"]}>
+                  <img src={item.thumbnail} alt={item.title} />
+                  <div className={styles["cart-text"]}>
+                    <h4>{item.title}</h4>
+                    <p>{item.stock > 0 ? "In Stock" : "Out of Stock"}</p>
+                    <div className={styles["icon-text"]}>
+                      <img src={star} alt="Star" />
+                      <span className={styles.txt}>
+                        {item.reviews?.rating || 0} Reviews
+                      </span>
+                    </div>
                   </div>
                 </div>
+
+                <div className={styles["add-quantity"]}>
+                  <div className={styles.reduce}>
+                    <FaMinus onClick={() => handleDecreaseQuantity(item)} />
+                  </div>
+                  <input type="number" value={item.cartQuantity} readOnly />
+                  <div className={styles.add}>
+                    <FaPlus onClick={() => handleIncreaseQuantity(item)} />
+                  </div>
+                </div>
+
+                <div className={styles["price-quantity"]}>
+                  <h4>${item.price}</h4>
+                  <p>
+                    ${item.price} <LiaTimesSolid /> {item.cartQuantity} Item
+                  </p>
+                </div>
               </div>
-              <div className={styles.addQuantity}>
-                <FaMinus onClick={() => handleDecrease(item)} />
-                <input type="number" value={item.cartQuantity} readOnly />
-                <FaPlus onClick={() => handleIncrease(item)} />
-              </div>
-              <div className={styles.priceQuantity}>
-                <h4>${item.price}</h4>
-                <p>${item.price} <LiaTimesSolid /> {item.cartQuantity} Item</p>
+
+              <div className={styles["delete-container"]}>
+                <div
+                  className={styles["delete"]}
+                  onClick={() => handleRemoveFromCart(item)}
+                >
+                  <MdDeleteOutline />
+                  <h4>REMOVE</h4>
+                </div>
               </div>
             </div>
-            <div className={styles.deleteContainer}>
-              <MdDeleteOutline onClick={() => handleRemove(item)} />
-              <h4>REMOVE</h4>
-            </div>
+          ))}
+        </div>
+
+        <div className={styles["cart-content-2"]}>
+          <div className={styles["summary-content-1"]}>
+            <h3>Order Summary</h3>
+            <p>{cartTotalQuantity} Items</p>
           </div>
-        ))}
-      </div>
-      <div className={styles.cartSummary}>
-        <h3>Order Summary</h3>
-        <p>{cartTotalQuantity} Items</p>
-        <div className={styles.summaryContent}>
-          <h4>Delivery Charges</h4>
-          <small>Add your delivery address to checkout to see delivery charges.</small>
-        </div>
-        <div className={styles.line}></div>
-        <div className={styles.summaryContent}>
-          <h4 className={styles.subtotal}>Subtotal</h4>
-          <p className={styles.subtotalAmount}>${cartTotalAmount}</p>
-        </div>
-        <div className={styles.line}></div>
-        <div className={styles.summaryContent}>
-          <h4>Total Amount</h4>
-          <p>${cartTotalAmount}</p>
-        </div>
-        <div className={styles.line}></div>
-        <div className={styles.summaryContent}>
-          <small>Excluding Delivery Charges</small>
-        </div>
-        <button className={styles.checkoutButton}>Proceed to Checkout</button>
-        <div className={styles.paymentImages}>
-          <img src={paystackIcon} alt="Paystack" />
-          <img src={mastercardIcon} alt="Mastercard" />
-          <img src={visaIcon} alt="Visa" />
+          <div className={styles["summary-content"]}>
+            <h4>Delivery Charges</h4>
+            <small>
+              Add your delivery address to checkout to see delivery charges.
+            </small>
+          </div>
+          <div className={styles["line"]}></div>
+          <div className={styles["summary-content"]}>
+            <h4
+              style={{
+                opacity: 0.5,
+              }}
+            >
+              Subtotal
+            </h4>
+            <p
+              style={{
+                color: "#3A3C3E",
+                opacity: 0.5,
+              }}
+            >
+              ${cartTotalAmount}
+            </p>
+          </div>
+          <div className={styles["line"]}></div>
+          <div className={styles["summary-content"]}>
+            <h4>Total Amount</h4>
+            <p>${cartTotalAmount}</p>
+          </div>
+          <div className={styles["line"]}></div>
+          <div className={styles["summary-content"]}>
+            <h4></h4>
+            <small>Excluding Delivery Charges</small>
+          </div>
+          <div className={styles["btn"]}>
+            <button>Proceed to Checkout</button>
+          </div>
+          <div className={styles["pay-image"]}>
+            <img src={paystack} alt="" />
+            <img src={card} alt="" />
+            <img src={visa} alt="" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 

@@ -5,7 +5,8 @@ import { nextSlide, prevSlide } from "../../features/apiSlice";
 import { FaAngleRight } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import styles from "../../styles/slide.module.css";
-
+import Loading from "../Loading/Loading";
+import Error from "../Error/error"
 function Slide() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -37,11 +38,11 @@ function Slide() {
   }; 
 
   if (productStatus === 'loading') {
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
 
   if (productStatus === 'failed') {
-    return <div>Error: {error}</div>;
+    return <Error/>;
   }
 
   return (

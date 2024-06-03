@@ -6,6 +6,7 @@ import { fetchProducts } from "../../features/productsSlice";
 import star from "../../assets/stars.svg";
 import styles from "../../styles/carddisplay.module.css";
 import LoadMoreButton from "../ui/button";
+import Error from "../Error/error"
 
 const BATCH_SIZE = 1; 
 
@@ -24,7 +25,7 @@ function Carddisplay() {
   }, [status, dispatch]);
 
   if (status === "failed") {
-    return <div>Error: {error}</div>;
+    return <Error/>;
   }
 
   const handleColorClick = (color) => {
