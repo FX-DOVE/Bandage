@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../features/productsSlice";
 import styles from "../../styles/shopdisplay.module.css";
-
+import Error from "../Error/error"
 const ArticleSection = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -16,7 +16,7 @@ const ArticleSection = () => {
   }, [status, dispatch]);
 
   if (status === "failed") {
-    return <div>Error: {error}</div>;
+    return <Error/>;
   }
 
   const product = products[0];

@@ -4,7 +4,7 @@ import { fetchProducts } from "../../features/productsSlice";
 import Product from "../ui/product";
 import Button from "../ui/button";
 import styles from "../../styles/productcontainer.module.css";
-
+import Error from "../Error/error"
 function ProductContainer() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -17,7 +17,7 @@ function ProductContainer() {
   useEffect(() => {
     if (productStatus === "idle") {
       dispatch(fetchProducts());
-    }
+    }6
   }, [productStatus, dispatch]);
 
   const showMore = () => {
@@ -29,7 +29,7 @@ function ProductContainer() {
   };
 
   if (productStatus === "failed") {
-    return <div>Error: {error}</div>;
+    return <Error/>;
   }
 
   return (

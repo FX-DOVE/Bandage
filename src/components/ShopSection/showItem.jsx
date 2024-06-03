@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../features/productsSlice";
 import Product from "../ui/product";
 import styles from "../../styles/shopproduct.module.css";
-
+import Error from "../Error/error"
 function ShopProduct() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -19,7 +19,7 @@ function ShopProduct() {
   }, [productStatus, dispatch]);
 
   if (productStatus === "failed") {
-    return <div>Error: {error}</div>;
+    return <Error/>;
   }
 
   return (
